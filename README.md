@@ -8,7 +8,7 @@ Crystal bindings for PDFlib.
 
    ```yaml
    dependencies:
-     crystal-pdflib:
+     pdflib:
        github: rowland/crystal-pdflib
    ```
 
@@ -17,7 +17,7 @@ Crystal bindings for PDFlib.
 ## Usage
 
 ```crystal
-require "crystal-pdflib"
+require "pdflib"
 ```
 
 This library is intended to be wrapped by higher-level libraries, so
