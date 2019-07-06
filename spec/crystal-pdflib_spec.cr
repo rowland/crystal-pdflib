@@ -8,7 +8,7 @@ describe "PDFlib" do
   context "blank page" do
     filename = "test_blank_page.pdf"
     it "should create a document" do
-      File.delete(filename)
+      File.delete(filename) if File.exists?(filename)
       doc = PDFlib.new
       res = PDFlib.begin_document(doc, filename, 0, optlist)
       res.should eq 1
@@ -17,6 +17,7 @@ describe "PDFlib" do
       PDFlib.end_document(doc, optlist)
       PDFlib.delete(doc)
       File.exists?(filename).should be_true
+      File.delete(filename) if File.exists?(filename)
     end
 
     it "should create a document buffer" do
