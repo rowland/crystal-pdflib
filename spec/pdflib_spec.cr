@@ -42,4 +42,25 @@ describe "PDFlib" do
       PDFlib.delete(doc)
     end
   end
+
+  context "moves and lines" do
+    filename = "test_moves_and_lines.pdf"
+    it "should move to positions and draw lines" do
+      File.delete(filename) if File.exists?(filename)
+      doc = PDFlib.new
+      res = PDFlib.begin_document(doc, filename, 0, optlist)
+      res.should eq 1
+      PDFlib.begin_page_ext(doc, width, height, optlist)
+
+      PDFlib.moveto(doc, 72, 72)
+      PDFlib.lineto(doc, 144, 72)
+      PDFlib.closepath_stroke(doc)
+
+      PDFlib.end_page_ext(doc, optlist)
+      PDFlib.end_document(doc, optlist)
+      PDFlib.delete(doc)
+      File.exists?(filename).should be_true
+      # File.delete(filename) if File.exists?(filename)
+    end
+  end
 end
